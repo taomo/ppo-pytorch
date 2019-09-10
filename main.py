@@ -21,6 +21,8 @@ from models import Policy, Value, ActorCritic
 from replay_memory import Memory
 from running_state import ZFilter
 
+import time
+
 # from utils import *
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
