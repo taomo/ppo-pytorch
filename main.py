@@ -228,7 +228,7 @@ writer = SummaryWriter()
 
 plot_epi = []
 plot_rew = []
-for i_episode in range(100) :   #count(1)
+for i_episode in range(2000) :   #count(1)
     memory = Memory()
 
     num_steps = 0
