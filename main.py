@@ -285,12 +285,12 @@ for i_episode in range(10) :   #count(1)
         plot_epi.append(i_episode)
         plot_rew.append(reward_batch)
 
-trace = go.Scatter( x = plot_epi, y = plot_rew)
-layout = go.Layout(title='A2C',xaxis=dict(title='Episodes', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')),
-yaxis=dict(title='Average Reward', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')))
-plotly.offline.plot({"data": [trace], "layout": layout},filename='PPO6.html',image='jpeg')
+# trace = go.Scatter( x = plot_epi, y = plot_rew)
+# layout = go.Layout(title='A2C',xaxis=dict(title='Episodes', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')),
+# yaxis=dict(title='Average Reward', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')))
+# plotly.offline.plot({"data": [trace], "layout": layout},filename='PPO6.html',image='jpeg')
 
-fig = go.Figure( trace )
+fig = go.Figure( go.Scatter( x = plot_epi, y = plot_rew) )
 fig.show()
 
         # writer.add_scalar('data/Last reward', reward_sum, i_episode)
