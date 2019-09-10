@@ -228,7 +228,7 @@ writer = SummaryWriter()
 
 plot_epi = []
 plot_rew = []
-for i_episode in range(10) :   #count(1)
+for i_episode in range(100) :   #count(1)
     memory = Memory()
 
     num_steps = 0
@@ -290,7 +290,11 @@ for i_episode in range(10) :   #count(1)
 # yaxis=dict(title='Average Reward', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')))
 # plotly.offline.plot({"data": [trace], "layout": layout},filename='PPO6.html',image='jpeg')
 
-fig = go.Figure( go.Scatter( x = plot_epi, y = plot_rew) )
+# print(type(plot_epi))
+# print(type(plot_rew))
+fig = go.Figure( go.Scatter( x = plot_epi, y = np.array(plot_rew).flatten() ) )
+# print(plot_epi)
+# print(np.array(plot_rew).flatten())
 fig.show()
 
         # writer.add_scalar('data/Last reward', reward_sum, i_episode)
