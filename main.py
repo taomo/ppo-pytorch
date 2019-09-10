@@ -23,12 +23,17 @@ from running_state import ZFilter
 
 import time
 
+
+import plotly
+import plotly.graph_objs as go
+from plotly.graph_objs import Layout,Scatter
+
 # from utils import *
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
 
-import plotly
-import plotly.graph_objects as go
+# import plotly
+# import plotly.graph_objects as go
 
 torch.set_default_tensor_type('torch.DoubleTensor')
 PI = torch.DoubleTensor([3.1415926])
@@ -220,7 +225,10 @@ episode_lengths = []
 
 writer = SummaryWriter()
 
-for i_episode in count(1):
+
+plot_epi = []
+plot_rew = []
+for i_episode in range(10) :   #count(1)
     memory = Memory()
 
     num_steps = 0
@@ -265,16 +273,23 @@ for i_episode in count(1):
     else:
         update_params(batch)
 
+
     if i_episode % args.log_interval == 0:
-        writer.add_scalars('data/scalar_group', {'Last reward': reward_sum, 
-                                                    'Average reward': reward_batch}, i_episode)
+        # writer.add_scalars('data/scalar_group', {'Last reward': reward_sum, 
+        #                                             'Average reward': reward_batch}, i_episode)
         print('Episode {}\tLast reward: {}\tAverage reward {}'.format(
             i_episode, reward_sum, reward_batch))
       
         # list(map('Episode {}\tLast reward: {}\tAverage reward {:.2f}'.format(
         #     i_episode, reward_sum, reward_batch)))
+        plot_epi.append(i_episode)
+        plot_rew.append(reward_batch)
 
+trace = go.Scatter( x = plot_epi, y = plot_rew)
+layout = go.Layout(title='A2C',xaxis=dict(title='Episodes', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')),
+yaxis=dict(title='Average Reward', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')))
+plotly.offline.plot({"data": [trace], "layout": layout},filename='PPO6.html',image='jpeg')
 
-        writer.add_scalar('data/Last reward', reward_sum, i_episode)
-        writer.add_scalar('data/Average reward', reward_batch, i_episode)
-writer.close()
+        # writer.add_scalar('data/Last reward', reward_sum, i_episode)
+        # writer.add_scalar('data/Average reward', reward_batch, i_episode)
+# writer.close()
