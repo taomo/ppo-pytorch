@@ -290,6 +290,9 @@ layout = go.Layout(title='A2C',xaxis=dict(title='Episodes', titlefont=dict(famil
 yaxis=dict(title='Average Reward', titlefont=dict(family='Courier New, monospace',size=18,color='#7f7f7f')))
 plotly.offline.plot({"data": [trace], "layout": layout},filename='PPO6.html',image='jpeg')
 
+fig = go.Figure( trace )
+fig.show()
+
         # writer.add_scalar('data/Last reward', reward_sum, i_episode)
         # writer.add_scalar('data/Average reward', reward_batch, i_episode)
 # writer.close()
