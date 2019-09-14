@@ -32,6 +32,8 @@ from plotly.graph_objs import Layout,Scatter
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
 
+import gym_Vibration
+
 # import plotly
 # import plotly.graph_objects as go
 
